@@ -1,0 +1,14 @@
+<%- include('./layout/header') %>
+
+<h1>Register</h1>
+<%- include('./register-from.ejs',{
+  redirectUrl:'register',
+  modalName:null
+}) %>
+<div>
+  <p>
+    Already have an account? <span><a href="/login">Login</a></span>
+  </p>
+</div>
+<br />
+<%- include('./layout/footer') %>
