@@ -7,7 +7,7 @@ const fs = require('fs');
 
 
 router.post("/sheets", (req, res) => {
-    const file = XLSX.read(req.files.file2.data, { type: "buffer" });
+    const file = XLSX.read(req.files.file.data, { type: "buffer" });
     return res.json(file.SheetNames);
   });
   
@@ -31,6 +31,7 @@ router.post("/sheets", (req, res) => {
     return res.json(results);
   });
 
+  
   router.post("/upload", (req, res) => {
     
 
