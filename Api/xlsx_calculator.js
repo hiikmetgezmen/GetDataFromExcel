@@ -1,7 +1,7 @@
 const XLSX = require("xlsx");
 
-module.exports = function (file1, file2, file1SheetIndex, file2SheetIndex) {
-  const file1SheetName = file1.SheetNames[file1SheetIndex];
+module.exports = function (file1, file2,  file2SheetIndex) {
+  const file1SheetName = file1.SheetNames[0];
   const file1Worksheet = file1.Sheets[file1SheetName];
   const file1Data = XLSX.utils.sheet_to_json(file1Worksheet, {
     header: "A",
