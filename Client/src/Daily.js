@@ -48,27 +48,27 @@ function Weekly(){
  
     
 
-    console.log("Ön yüz ",file);
-    const handleChange = (selectedOption) => {
-      console.log("handle change", selectedOption);
-    }
+    // console.log("Ön yüz ",file);
+    // const handleChange = (selectedOption) => {
+    //   console.log("handle change", selectedOption);
+    // }
 
 
-    const SelectDropdown = () => {
-      return (
-          <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)}>
-              <option value="" key="none"> -- Select One -- </option>
-              {
-                  sheetName?.map( (item,index) => (
-                      <option value={index} key={index}>{item}</option>
-                  ))
-              }
-          </select>
+  //   const SelectDropdown = () => {
+  //     return (
+  //         <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)}>
+  //             <option value="" key="none"> -- Select One -- </option>
+  //             {
+  //                 sheetName?.map( (item,index) => (
+  //                     <option value={index} key={index}>{item}</option>
+  //                 ))
+  //             }
+  //         </select>
 
           
-      )
+  //     )
       
-  }
+  // }
 
 
 console.log(selectValue);
@@ -92,15 +92,30 @@ const calculate = async (e) => {
 };
 
 
+let optionItems = sheetName.map((item,q) =>
+        <option key={item} value={q+1}>{item}</option>
+    );
+
+
+
+
+    console.log(selectValue);
 
  
     return (
       <div className="App">
         <input type="file" onChange={saveFile} />
         <button onClick={uploadFile}>Upload</button>
-        <SelectDropdown name='file2SheetIndex'/>
+        {/* <SelectDropdown name='file2SheetIndex'/> */}
+        <select value={selectValue}  onChange={(e) => setSelectValue(e.target.value)} defaultValue="">
+        <option value="" key="none"> -- Select One -- </option>
+        
+           {optionItems}
+        
+                       
+                    </select>
 
-        <button onClick={calculate}>Calculate</button>
+        <button onClick={calculate} >Calculate</button>
 
         <table>
           <tr>
