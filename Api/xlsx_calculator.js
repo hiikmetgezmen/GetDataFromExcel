@@ -1,6 +1,6 @@
 const XLSX = require("xlsx");
 
-module.exports = function (file1, file2,  file2SheetIndex) {
+module.exports = function (file1, file2, file2SheetIndex) {
   const file1SheetName = file1.SheetNames[0];
   const file1Worksheet = file1.Sheets[file1SheetName];
   const file1Data = XLSX.utils.sheet_to_json(file1Worksheet, {
@@ -60,11 +60,11 @@ module.exports = function (file1, file2,  file2SheetIndex) {
 
     const result = {
       id: file1Item.id,
-      monday: file1Item.monday,
-      value2: found.value,
-      total,
-      variance,
-      variancePercent,
+      // monday: file1Item.monday,
+      // value2: found.value,
+      // total,
+      // variance,
+      // variancePercent,
       pallet
       // result1,
       // result2,

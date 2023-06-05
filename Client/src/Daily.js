@@ -11,6 +11,7 @@ function Weekly(){
     const [fileName, setFileName] = useState("");
     const [sheetName, setSheetName] = useState([]);
     const [selectValue, setSelectValue] = useState();
+    const [data, setData] = useState();
     const [error, setError] = useState('')
 
 
@@ -76,14 +77,14 @@ const calculate = async (e) => {
 
   const formData = new FormData();
   formData.append("file2", file);
-  formData.append("file2SheetIndex", selectValue.value);
+  formData.append("file2SheetIndex", selectValue);
 
   try {
     const res = await axios.postForm(
-      "http://localhost:4000/calculate", formData
-    ,{file,selectValue})
+      "http://localhost:4000/calculate", formData)
     .then((res) => {
       console.log("Success ", res);
+      setData(res.data);
     })
   } catch (ex) {
     console.log(ex);
@@ -100,6 +101,27 @@ const calculate = async (e) => {
         <SelectDropdown name='file2SheetIndex'/>
 
         <button onClick={calculate}>Calculate</button>
+
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+
+          {data?.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td>{item.id}</td>
+                {/* <td>{item.monday}</td>
+                <td>{item.value2}</td>
+                <td>{item.total}</td>
+                <td>{item.variance}</td>
+                <td>{item.variancePercent}</td> */}
+                <td>{item.pallet}</td>  
+              </tr>
+            );
+          })}
+        </table>
       </div>
     );
   
