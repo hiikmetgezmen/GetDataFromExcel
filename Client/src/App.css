@@ -82,3 +82,83 @@ input:focus {
   font-size: 12px;
   color: green;
 }
+
+/* typography */
+
+html {
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+
+thead th,
+tfoot th {
+  font-family: "Rock Salt", cursive;
+}
+
+th {
+  letter-spacing: 2px;
+}
+
+td {
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+  background-color: green;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+thead{
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+thead th{
+  background: red;
+  border: 3px solid purple;
+}
+/* spacing */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  /* border-collapse: collapse; */
+  border: 3px solid purple;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 20px;
+}
+
+tbody tr:nth-child(1) {
+  background-color: #ff33cc;
+}
+
+tbody tr:nth-child(2) {
+  background-color: #e495e4;
+}
+
+
+table {
+  background-color: #ff33cc;
+}

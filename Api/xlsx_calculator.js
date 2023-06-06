@@ -1,4 +1,6 @@
 const XLSX = require("xlsx");
+var Excel = require('exceljs');
+var workbook = new Excel.Workbook();
 
 module.exports = function (file1, file2, file2SheetIndex) {
   const file1SheetName = file1.SheetNames[0];
@@ -31,6 +33,9 @@ module.exports = function (file1, file2, file2SheetIndex) {
     header: "A",
     range: 1,
   });
+
+  
+
   const file2DataMapped = file2Data
     .filter((data) => data.A && data.B)
     .map((data) => ({
@@ -45,7 +50,33 @@ module.exports = function (file1, file2, file2SheetIndex) {
     );
     if (!found) continue;
 
-   
+    // const newData = file1Data
+    // .map(function(data){
+    //  data.U = found.value
+    //  return data;
+    // });
+
+
+    // const newWb = XLSX.utils.book_new();
+    // var newsh = XLSX.utils.json_to_sheet(newData);
+    // XLSX.utils.book_append_sheet(newWb,newsh,0);
+    // XLSX.writeFile(newWb,"./files/file1.xlsx");
+
+  
+
+    // workbook.xlsx.readFile('./files/file1.xlsx')
+    // .then(function() {
+    //     var worksheet = workbook.getWorksheet(0);
+    //     var row = worksheet.getRow(5);
+    //     row.getCell(1).value = 5; // A5's value set to 5
+    //     row.commit();
+    //     return workbook.xlsx.writeFile('new.xlsx');
+    // })
+
+
+
+
+
  
     const total = found.value + file1Item.monday
      + file1Item.tuesday + file1Item.wednesday + file1Item.thursday + file1Item.friday + file1Item.saturday + file1Item.sunday;

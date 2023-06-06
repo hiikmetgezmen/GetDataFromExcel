@@ -31,10 +31,13 @@ function Weekly(){
 
  
     return (
-      <div className="App">
+      <div className="container">
+          <div className="home">
         <input type="file" onChange={saveFile} />
         <button onClick={uploadFile}>Upload</button>
       </div>
+      </div>
+
     );
   
             }

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
 import Weekly from "./Weekly";
-import Logout from "./Logout";
+import Daily from "./Daily";
 
 function Login() {
     const [user, setUser] = useState(null);
@@ -61,7 +61,7 @@ function Login() {
         {user ? (
           <div className="home">
            {user.isAdmin === true && <Weekly></Weekly>}
-            {user.isAdmin === false && <Logout></Logout>}
+            {user.isAdmin === false && <Daily></Daily>}
             {error && (
               <span className="error">
                 You are not allowed to delete this user!
