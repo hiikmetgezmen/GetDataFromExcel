@@ -1,4 +1,5 @@
 const { check, validationResult } = require("express-validator");
+const createError = require('http-errors');
 
 const checkAuth = require("../middleware/checkAuth");
 const { users } = require("../db");
@@ -7,14 +8,16 @@ const router = require("express").Router();const  JWT  = require("jsonwebtoken")
 let refreshTokens = [];
 router.post("/signup",[check("email","Please valid an email").isEmail(),check("password","Min 6 characters").isLength({
     min:6
-})],(req,res)=>{
+})],(req,res,next)=>{
     const {username,email,password} = req.body;
     const errors = validationResult(req);
 
     if(!errors.isEmpty()){
-        return res.status(400).json({
-            errors:errors.array()
-        })
+        throw new Error("Please enter");
+        // return res.status(400).json({
+        //     errors:errors.array(),
+        //     message:"Please enter"
+        // })
     }
 
     let user = users.find((user)=>{
@@ -23,11 +26,12 @@ router.post("/signup",[check("email","Please valid an email").isEmail(),check("p
 
     if(user) 
     {
-        res.status(400).json({
-            errors:[{
-                "msg":"User is already exists"
-            }]
-        })
+        throw new Error("User is already exists");
+        // res.status(400).json({
+        //     errors:[{
+        //         "msg":"User is already exists"
+        //     }]
+        // })
     }
 
 
@@ -85,7 +89,11 @@ router.post("/refresh", (req, res) => {
 router.post("/login",(req,res)=>{
     const {username,password} = req.body;
 
-    const user = users.find((user)=>{
+    const user = users.find((user,err)=>{
+        if(user.username===null || user.password===null)
+        {
+            return res.status(400).json("Please");
+        }
         return user.username === username && user.password === password;
     });
 
@@ -102,7 +110,8 @@ router.post("/login",(req,res)=>{
         });
     }
     else{
-        res.status(400).json("Username or password incorrect")
+        throw new Error("Username or password incorrect")
+        // res.status(400).json("Username or password incorrect")
     }
 
 

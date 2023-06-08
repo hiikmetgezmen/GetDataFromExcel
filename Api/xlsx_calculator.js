@@ -26,7 +26,7 @@ module.exports = function (file1, file2, file2SheetIndex) {
 
 
   const file1DataMapped = file1Data
-    .filter((data) => data.A && data.N && ((data==null)?0:data))
+    // .filter((data) => data.A && data.N)
     .map((data) => ({
       id: data.A,
       value: data.N ==null ? 0 : data.N ,
@@ -51,7 +51,7 @@ module.exports = function (file1, file2, file2SheetIndex) {
   
 
   const file2DataMapped = file2Data
-    .filter((data) => data.A && data.B)
+    // .filter((data) => data.A && data.B)
     .map((data) => ({
       id: data.A,
       value: data.B,
@@ -60,11 +60,28 @@ module.exports = function (file1, file2, file2SheetIndex) {
   const results = [];
   const result= [];
 
+  const response =  fs.readFile("data.json", (error, data) => {
+    // if the reading process failed,
+    // throwing the error
+    if (error) {
+      // logging the error
+      console.error(error);
+  
+      throw err;
+    }
+    const user =  JSON.parse(data);
+    for(let i in user){
+      console.log(Object.values(user[i])[1]);
+      }
+    // console.log(user);
+  });
+  // 2 exceldeki idleri buluyor
   for (const file1Item of file1DataMapped) {
     const found = file2DataMapped.find(
       (file2Item) => file2Item.id === file1Item.id
     );
     if (!found) continue;
+    
 
    
  const total = found.value + file1Item.monday
@@ -76,21 +93,6 @@ module.exports = function (file1, file2, file2SheetIndex) {
 
   
 
-   const response =  fs.readFile("data.json", (error, data) => {
-      // if the reading process failed,
-      // throwing the error
-      if (error) {
-        // logging the error
-        console.error(error);
-    
-        throw err;
-      }
-      const user =  JSON.parse(data);
-      for(let i in user){
-        console.log(user[i].id);
-        }
-      // console.log(user);
-    });
     
     // console.log(response);
     // const newWb = XLSX.utils.book_new();
